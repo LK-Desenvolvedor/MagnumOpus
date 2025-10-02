@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - Lista de Filmes Gótica</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-content">
+                <a href="index.html" class="navbar-brand">🦇 Magnum Opus</a>
+                <ul class="navbar-nav">
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="register.html">Registrar</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="gothic-card" style="max-width: 400px; margin: 4rem auto;">
+            <h1 class="text-center">Junte-se às Sombras</h1>
+            <p class="text-center mb-3">Crie sua conta e comece sua jornada cinematográfica sombria</p>
+            
+            <form id="registerForm" onsubmit="handleRegister(event)">
+                <div class="form-group">
+                    <label for="username">Nome de Usuário</label>
+                    <input 
+                        type="text" 
+                        id="username" 
+                        name="username" 
+                        class="form-control" 
+                        placeholder="Seu nome de usuário"
+                        required
+                        minlength="3"
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        class="form-control" 
+                        placeholder="seu@email.com"
+                        required
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        class="form-control" 
+                        placeholder="Crie uma senha forte"
+                        required
+                        minlength="6"
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirmPassword">Confirmar Senha</label>
+                    <input 
+                        type="password" 
+                        id="confirmPassword" 
+                        name="confirmPassword" 
+                        class="form-control" 
+                        placeholder="Confirme sua senha"
+                        required
+                        minlength="6"
+                    >
+                </div>
+                
+                <button type="submit" class="btn" style="width: 100%;">
+                    Criar Conta
+                </button>
+            </form>
+            
+            <div class="text-center mt-3">
+                <span style="color: var(--light-gray);">Já tem uma conta? </span>
+                <a href="login.html" style="color: var(--accent-purple); text-decoration: none;">
+                    Faça login aqui
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

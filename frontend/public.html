@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Compartilhada - Magnum Opus</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-content">
+                <a href="index.html" class="navbar-brand">🦇 Magnum Opus</a>
+                <ul class="navbar-nav">
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="register.html">Registrar</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div id="public-content">
+            <!-- Conteúdo será carregado dinamicamente -->
+            <div class="gothic-card text-center">
+                <div class="loading" style="margin: 2rem auto;"></div>
+                <p>Carregando lista compartilhada...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Gerenciador para páginas públicas
+        class PublicManager {
+            constructor() {
+                this.init();
+            }
+
+            init() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const shareableLink = urlParams.get('list');
+
+                if (!shareableLink) {
+                    this.showError('Link de compartilhamento inválido');
+                    return;
+                }
+
+                this.loadPublicList(shareableLink);
+            }
+
+            async loadPublicList(shareableLink) {
+                try {
+                    const response = await fetch(`http://localhost:3000/public/list/${shareableLink}`);
+                    
+                    if (!response.ok) {
+                        throw new Error('Lista não encontrada');
+                    }
+
+                    const list = await response.json();
+                    this.renderPublicList(list);
+                } catch (error) {
+                    this.showError('Erro ao carregar lista: ' + error.message);
+                }
+            }
+
+            renderPublicList(list) {
+                const publicContent = document.getElementById('public-content');
+                
+                publicContent.innerHTML = `
+                    <div class="gothic-card fade-in">
+                        <h1>${list.name}</h1>
+                        <p style="color: var(--light-gray); margin-bottom: 1rem;">
+                            ${list.description || 'Sem descrição'}
+                        </p>
+                        <p style="color: var(--accent-purple); font-size: 1.1rem;">
+                            ${list.movies.length} filme(s) nesta lista
+                        </p>
+                        
+                        <div class="text-center mt-3">
+                            <p style="color: var(--light-gray); font-size: 0.9rem;">
+                                Gostou desta lista? 
+                                <a href="register.html" style="color: var(--accent-purple); text-decoration: none;">
+                                    Crie sua conta
+                                </a> 
+                                e comece a criar suas próprias listas!
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="movie-grid">
+                        ${list.movies.map(movie => this.renderPublicMovieCard(movie)).join('')}
+                    </div>
+                `;
+            }
+
+            renderPublicMovieCard(movie) {
+                return `
+                    <div class="movie-card fade-in">
+                        ${movie.imageUrl ? `<img src="${movie.imageUrl}" alt="${movie.title}" onerror="this.style.display='none'">` : ''}
+                        <div class="movie-card-content">
+                            <h3>${movie.title}</h3>
+                            
+                            ${movie.watchLinks && movie.watchLinks.length > 0 ? `
+                                <div class="movie-links">
+                                    ${movie.watchLinks.map((link, index) => `
+                                        <a href="${link}" target="_blank" class="movie-link">
+                                            Assistir ${movie.watchLinks.length > 1 ? (index + 1) : ''}
+                                        </a>
+                                    `).join('')}
+                                </div>
+                            ` : `
+                                <p style="color: var(--light-gray); font-style: italic;">
+                                    Nenhum link disponível
+                                </p>
+                            `}
+                        </div>
+                    </div>
+                `;
+            }
+
+            showError(message) {
+                const publicContent = document.getElementById('public-content');
+                
+                publicContent.innerHTML = `
+                    <div class="gothic-card text-center fade-in">
+                        <h1>Ops! Algo deu errado</h1>
+                        <p style="color: var(--light-gray); margin: 2rem 0;">
+                            ${message}
+                        </p>
+                        
+                        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                            <a href="index.html" class="btn">
+                                🏠 Página Inicial
+                            </a>
+                            <a href="register.html" class="btn">
+                                📝 Criar Conta
+                            </a>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        // Inicializar gerenciador público
+        const publicManager = new PublicManager();
+    </script>
+</body>
+</html>

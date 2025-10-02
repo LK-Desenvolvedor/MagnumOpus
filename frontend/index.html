@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magnum Opus</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-content">
+                <a href="index.html" class="navbar-brand">🦇 Magnum Opus</a>
+                <ul class="navbar-nav">
+                    <!-- Será preenchido dinamicamente pelo JavaScript -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div id="main-content">
+            <!-- Conteúdo será carregado dinamicamente -->
+            <div class="gothic-card text-center">
+                <div class="loading" style="margin: 2rem auto;"></div>
+                <p>Carregando sua cripta de filmes...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Garante que o authManager e appManager sejam inicializados após o DOM estar completamente carregado
+        document.addEventListener("DOMContentLoaded", () => {
+            // authManager já é inicializado no auth.js
+            // Se o usuário estiver autenticado, o appManager.init() será chamado para carregar as listas
+            if (authManager.isAuthenticated()) {
+                appManager.init();
+            } else {
+                // Se não estiver autenticado, o authManager já deve ter redirecionado para login.html
+                // ou configurado o navbar corretamente.
+            }
+        });
+    </script>
+</body>
+</html>
