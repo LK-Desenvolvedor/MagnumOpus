@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:3000/api';
+const API_BASE_URL = 'https://backend-autumn-rain-4266.fly.dev/api';
 
 class API {
   constructor() {
