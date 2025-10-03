@@ -152,7 +152,7 @@ class API {
 
   // Método para acessar lista pública
   async getPublicMovieList(shareableLink) {
-    const url = `http://localhost:3000/public/list/${shareableLink}`;
+    const url = `https://backend-autumn-rain-4266.fly.dev/public/list/${shareableLink}`;
     
     try {
       const response = await fetch(url);

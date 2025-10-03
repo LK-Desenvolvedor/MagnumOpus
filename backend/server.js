@@ -12,7 +12,28 @@ connectDB();
 
 const app = express();
 
-app.use(cors());
+const allowedOrigins = [
+  'https://magnum-opus-three.vercel.app',
+  'http://localhost:3000', 
+  process.env.FRONTEND_URL 
+].filter(Boolean); 
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    // Permite requests sem 'Origin' (como de apps mobile ou ferramentas como curl)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Não permitido por CORS'));
+    }
+  },
+  credentials: true,
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 app.use(express.json()); // Para parsear JSON no corpo da requisição
 
 app.use("/api/auth", authRoutes);
