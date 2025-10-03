@@ -30,6 +30,6 @@ router
   .delete(protect, deleteMovieFromList);
 
 // Rota para acesso público a uma lista
-router.get("/public/list/:shareableLink", getPublicMovieList);
+router.get("/list/:shareableLink", getPublicMovieList);
 
 module.exports = router;
