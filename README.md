@@ -38,34 +38,31 @@ Este projeto é uma aplicação web completa para gerenciamento de listas de fil
 ```
 . (raiz do projeto)
 ├── backend/
-│   ├── config/             # Configurações (ex: conexão com DB)
-│   ├── controllers/        # Lógica de negócio da API
-│   ├── middleware/         # Middlewares (ex: autenticação JWT)
-│   ├── models/             # Schemas do Mongoose
-│   ├── routes/             # Definição das rotas da API
-│   ├── .env                # Variáveis de ambiente
-│   ├── package.json        # Dependências do backend
-│   └── server.js           # Ponto de entrada do servidor
+│   ├── config/            
+│   ├── controllers/       
+│   ├── middleware/         
+│   ├── models/            
+│   ├── routes/             
+│   ├── .env                
+│   ├── package.json        
+│   └── server.js           
 ├── frontend/
-│   ├── css/                # Arquivos CSS
+│   ├── css/               
 │   │   └── style.css
-│   ├── js/                 # Arquivos JavaScript do frontend
+│   ├── js/                 
 │   │   ├── api.js
 │   │   ├── auth.js
 │   │   └── main.js
-│   ├── forgot-password.html # Página de recuperação de senha
-│   ├── index.html          # Página principal (dashboard)
-│   ├── login.html          # Página de login
-│   ├── public.html         # Página para visualização de listas públicas
-│   ├── register.html       # Página de registro
-│   └── reset-password.html # Página para redefinição de senha
-├── project_architecture.md # Documento de arquitetura do projeto
-└── README.md               # Este arquivo
+│   ├── forgot-password.html
+│   ├── index.html          
+│   ├── login.html          
+│   ├── public.html         
+│   ├── register.html       
+│   └── reset-password.html 
+├── project_architecture.md 
+└── README.md              
 ```
 
-## Configuração e Execução
-
-Siga os passos abaixo para configurar e executar o projeto em sua máquina local.
 
 ### 1. Pré-requisitos
 
@@ -97,8 +94,8 @@ Siga os passos abaixo para configurar e executar o projeto em sua máquina local
     MONGO_URI=mongodb+srv://listadefilmesapp_db_user:FXoK3o9vfVgSspz9@cluster0.tj2dhnu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
     JWT_SECRET=M9@8W35rvhao5H$wuh@5gU
     PORT=3000
-    EMAIL_USER=seuemail@gmail.com      # Seu email para envio de recuperação de senha
-    EMAIL_PASS=suasenhaapp             # Sua senha de aplicativo (para Gmail, por exemplo)
+    EMAIL_USER=seuemail@gmail.com     
+    EMAIL_PASS=suasenhaapp             
     ```
     - **`MONGO_URI`**: A string de conexão do seu cluster MongoDB Atlas. Certifique-se de que o usuário `listadefilmesapp_db_user` tenha permissões de leitura e escrita para o banco de dados.
     - **`JWT_SECRET`**: Uma string secreta forte e única para assinar seus tokens JWT.
@@ -139,15 +136,7 @@ Siga os passos abaixo para configurar e executar o projeto em sua máquina local
 6.  **Perfil**: Acesse "👤 Meu Perfil" para atualizar suas informações ou excluir sua conta.
 7.  **Compartilhar**: Use o botão "🔗 Compartilhar" em uma lista para obter um link público. Este link pode ser acessado por qualquer pessoa via `public.html?list=<shareableLink>`.
 
-## Contribuição
-
-Sinta-se à vontade para contribuir com melhorias, correções de bugs ou novas funcionalidades. Crie um fork do projeto, faça suas alterações e envie um pull request.
-
 ## Licença
 
-Este projeto está licenciado sob a licença ISC. Veja o arquivo `LICENSE` para mais detalhes. (Nota: O arquivo LICENSE não foi criado neste escopo, mas é uma boa prática incluí-lo.)
-
-## Autor
-
-Manus AI
+Este projeto está licenciado sob a licença ISC. Veja o arquivo `LICENSE` para mais detalhes. 
 
